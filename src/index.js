@@ -4,7 +4,9 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-import Counter from "./components/counter";
+//import Movie from "./components/movie";
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
+//ReactDOM.render(<Movie />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
+
 registerServiceWorker();

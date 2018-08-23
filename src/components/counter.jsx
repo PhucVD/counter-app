@@ -1,33 +1,40 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    count: 0,
-    tags: ["tag1", "tag2", "tag3"]
-  };
+  constructor(props) {
+    super(props);
+    this.counter = this.props.counter;
+    this.onDelete = this.props.onDelete;
+    this.onIncrement = this.props.onIncrement;
+  }
 
   render() {
     return (
-      <React.Fragment>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className="btn btn-sm btn-secondary">Increment</button>
-        <ul>
-          {this.state.tags.map(tag => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-      </React.Fragment>
+      <div>
+        <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
+        <button
+          onClick={() => this.onIncrement(counter)}
+          className="btn btn-sm btn-secondary m-2"
+        >
+          Increment
+        </button>
+        <button
+          onClick={() => this.onDelete(counter.id)}
+          className="btn btn-danger btn-sm"
+        >
+          Delete
+        </button>
+      </div>
     );
   }
 
-  formatCount() {
-    const { count } = this.state;
-    return count === 0 ? "Zero" : count;
+  formatValue() {
+    return this.counter.value === 0 ? "Zero" : this.counter.value;
   }
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    return this.state.count > 0 ? classes + "primary" : classes + "warning";
+    return this.counter.value > 0 ? classes + "info" : classes + "warning";
   }
 }
 
